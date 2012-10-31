@@ -13,14 +13,15 @@ This app shows off Ember's computed properties. The attempt is to play a melody 
 * `next_chord` is computed when `current_note` has changed a `x` times || some random matching happens. The next chord is based on `current_chord`.
 * `current_scale` is computed when `current_chord` changes.
 
+Here's the baic idea. I'll implement the actual app and UI soon. 
 
 ```coffeescript
 # Constants
-current_chord:  null
-current_note:   null
-
 major_chord_structure =  [1, 3, 4.5]
 selected_scale_structure: [1, 2, 3, 3.5, 4.5, 5.5, 6.5, 7]
+
+current_chord:  null
+current_note:   null
 
 current_scale:  (->
   @get 'current_chord'
@@ -30,14 +31,14 @@ current_scale:  (->
 
 next_note: (->
   currentScale = @get 'current_scale'
-  newNote = _getNextNote @get('current_note'), currentScale
+  newNote = @_getNextNote @get('current_note'), currentScale
   @set 'current_note', newNote
 ).property('current_note', 'current_scale')
 
 next_chord: (->
   if @_readyToMutateChord()
     currentNote = @get 'current_note'
-    newChord = _getNextChord(@get('currentChord'))
+    newChord =@ _getNextChord(@get('currentChord'))
     @set('current_chord', newChord)
 ).property('current_chord', 'current_note')
 
