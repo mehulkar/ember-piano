@@ -1,5 +1,6 @@
 Piano.ApplicationController = Ember.Controller.extend({
   currentNote: (function() {
-    return "C"
+    tableOfNotes = this.store.findAll(Piano.Note)
+    return tableOfNotes
   }).property()
 })
