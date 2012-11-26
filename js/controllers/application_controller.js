@@ -1,1 +1,5 @@
-Piano.ApplicationController = Ember.Controller.extend()
+Piano.ApplicationController = Ember.Controller.extend({
+  currentNote: (function() {
+    return "C"
+  }).property()
+})
