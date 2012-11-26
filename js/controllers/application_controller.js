@@ -1,0 +1,1 @@
+Piano.ApplicationController = Ember.Controller.extend()
