@@ -1,3 +1,4 @@
+
 (function( win ) {
 	'use strict';
 
@@ -5,10 +6,7 @@
 		VERSION: '1.0',
 		rootElement: '#piano',
 		// Extend to inherit outlet support
-		ApplicationController: Ember.Controller.extend(),
-		ready: function() {
-			this.initialize();
-		}
+		ApplicationController: Ember.Controller.extend()
 	});
 
 })( window );
