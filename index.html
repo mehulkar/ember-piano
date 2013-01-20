@@ -9,14 +9,18 @@
     <section id="piano">
       And the piano will play it's song for you.
       <script type="text/x-handlebars">
-        {{log this.constructor}}
-        {{currentNote}}
+        {{outlet}}
+      </script>
+
+      <script type="text/x-handlebars" data-template-name="current">
+        
       </script>
     </section>
     <section id="scripts">
       <script src="http://code.jquery.com/jquery-1.9.0b1.js"></script>
       <script src="js/libs/handlebars.js"></script>
       <script src="js/libs/ember.js"></script>
+      <script src="js/piano.js"></script>
     </section>
   </body>
 </html>
