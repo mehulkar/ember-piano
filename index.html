@@ -9,8 +9,17 @@
     <section id="piano">
       <script type="text/x-handlebars">
         And the piano will play it's song for you.
-        {{currentNote.note}}
+        {{outlet}}
       </script>
+
+      <script type="text/x-handlebars" id="note">
+        {{currentNote.note}}
+        <audio controls autoplay="autoplay">
+          <source {{bindAttr src="currentNoteLocation"}} type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+      </script>
+
     </section>
     <section id="scripts">
       <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>

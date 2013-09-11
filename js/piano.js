@@ -1,26 +1,41 @@
 Piano = Ember.Application.create();
 
-Piano.ApplicationRoute = Ember.Route.extend({
-  model: function(controller) {
-    this._super(controller);
-    return Piano.Note.create({val: 0});
+Piano.Router.map(function(){
+  this.route('note', {path: ':noteVal'});
+});
+
+Piano.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('note', 1);
   }
 });
 
-Piano.ApplicationController = Ember.Controller.extend({
+Piano.NoteRoute = Ember.Route.extend({
+  model: function(params) {
+    var note = parseInt(params.noteVal);
+    return Piano.Note.create({val: note});
+  }
+})
+
+Piano.NoteController = Ember.ObjectController.extend({
   currentNote: Em.computed.alias('content'),
 
   updateCurrentNote: function() {
     var note = this.get('currentNote');
 
     if (note && note.get('val') < 8) {
-      this.incrementProperty('currentNote.val');
-
-      // and run it again after 1 second
-      Ember.run.later(this, 'updateCurrentNote', 1000);
+      Ember.run.later(this, 'transitionWithNote', 1000);
     }
 
-  }.observes('content').on('init')
+  }.observes('content').on('init'),
+
+  transitionWithNote: function() {
+    var newNoteVal = this.incrementProperty('currentNote.val');
+    this.transitionToRoute('note', newNoteVal)
+  },
+  currentNoteLocation: function() {
+    return "sounds/" + this.get('currentNote.note') + ".wav";
+  }.property('currentNote.note'),
 });
 
 var noteMapping = {
